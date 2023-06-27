@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -23,8 +24,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", 'API_KEY', '"9b8cb8c7f11c077f8c4e217974d9ee40"'
-        buildConfigField "String", 'BASE_URL', '"https://www.url.com/"'
+        buildConfigField "String", 'API_KEY', '"5763846de30d489aa867f0711e2b031c"'
+        buildConfigField "String", 'BASE_URL', '"https://api.nytimes.com/"'
     }
 
     buildTypes {
