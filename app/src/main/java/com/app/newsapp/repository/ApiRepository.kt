@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ApiRepository @Inject constructor(
     private val apiService: ApiService
 ){
-    fun getPosts(page:Int,onComplete:(List<Post>)->Unit) = apiService.getPosts(page.toString()).enqueue {
-        onComplete(it.response.docs)
+    fun getPosts(page:Int,onComplete:(List<Post>?)->Unit) = apiService.getPosts(page.toString()).enqueue {
+        onComplete(it?.response?.docs)
     }
 }

@@ -1,5 +1,6 @@
 package com.app.newsapp.api
 
+import android.util.Log
 import com.app.newsapp.data.dataModals.Post
 import com.app.newsapp.data.responseModals.BasicResponseModal
 import retrofit2.Call
@@ -15,16 +16,19 @@ interface ApiService {
     ): Call<BasicResponseModal<Post>>
 }
 
-fun <T> Call<T>.enqueue(onFailure: () -> Unit = { }, onSuccess: (T) -> Unit) {
+fun <T> Call<T>.enqueue(onSuccess: (T?) -> Unit) {
     this.enqueue(object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {
-            response.body()?.let {
-                onSuccess(it)
-            }
+            if(response.isSuccessful){
+                response.body()?.let {
+                    onSuccess(it)
+                }
+            } else onSuccess(null)
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
-            onFailure()
+            Log.d("API Failure", "error: $t")
+            onSuccess(null)
         }
     })
 }
