@@ -1,11 +1,12 @@
-package com.app.newsapp.ui.home
+package com.app.newsapp.ui.book
 
+import android.content.Intent
+import android.net.Uri
+import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -23,12 +24,12 @@ import com.adster.sdk.mediation.MediationRewardedAd
 import com.adster.sdk.mediation.Reward
 import com.adster.sdk.mediation.RewardedAdEventsListener
 import com.app.newsapp.main.MainActivity
-import com.app.newsapp.adapter.PostAdapter
+import com.app.newsapp.adapter.BookAdapter
 import com.app.newsapp.main.applicationContext
 import com.app.newsapp.base.BaseFragment
-import com.app.newsapp.data.dataModals.Post
+import com.app.newsapp.data.dataModals.Book
 import com.app.newsapp.databinding.AdNativeLayoutBinding
-import com.app.newsapp.databinding.FragmentHomeBinding
+import com.app.newsapp.databinding.FragmentBooksBinding
 import com.app.newsapp.databinding.ItemPostAdBinding
 import com.app.newsapp.utils.extensionFunctions.click
 import com.app.newsapp.utils.extensionFunctions.gone
@@ -38,28 +39,32 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class BooksFragment : BaseFragment<FragmentBooksBinding>() {
 
-    override fun setBinding() = FragmentHomeBinding.inflate(layoutInflater)
+    override fun setBinding() = FragmentBooksBinding.inflate(layoutInflater)
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: BooksViewModel by viewModels()
 
     @Inject
-    lateinit var adapter: PostAdapter
+    lateinit var adapter : BookAdapter
 
-    private var postDetailsVisitedCount = 0
+    private var booksClickedCount = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            adapter.onClick = { navigateToPostDetailsFragment(it) }
-            postRecyclerView.adapter = adapter
-            postRecyclerView.addOnScrollListener(ScrollListener())
+            adapter.onClick = {
+                booksClickedCount++
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.productUrl))
+                startActivity(intent)
+            }
+            booksRecyclerView.adapter = adapter
+            booksRecyclerView.addOnScrollListener(ScrollListener())
             adapter.loadAd = { binding -> fetchNativeAd(binding) }
-            icBook.click { navigateToBooksFragment() }
+            icNews.click { activity?.onBackPressed() }
         }
 
-        viewModel.getPosts()
+        viewModel.getBooks()
         viewModel.list.observe(viewLifecycleOwner) {
             adapter.updateList(it.toList())
         }
@@ -69,9 +74,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             else hideProgressBar()
         }
 
-        if(postDetailsVisitedCount!=0){
-            if(postDetailsVisitedCount%4==0) fetchRewardAd()
-            else if(postDetailsVisitedCount%2==0) fetchInterstitialAd()
+        if(booksClickedCount!=0){
+            if(booksClickedCount%4==0) fetchRewardAd()
+            else if(booksClickedCount%2==0) fetchInterstitialAd()
         }
 
     }
@@ -80,7 +85,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val configuration = AdRequestConfiguration.Companion.builder(
             applicationContext, "native_0"
         )
-
         configuration.addCustomTargetingValue("news_app","true").addCustomTargetingValue("ad_type","native")
 
         AdSterAdLoader.builder().withAdsListener(object : MediationAdListener() {
@@ -129,7 +133,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 adView.nativeAd = ad
 
-                 binding.main.apply {
+                binding.main.apply {
                     removeAllViews()
                     addView(adView)
                 }
@@ -160,13 +164,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }).build().loadAd(configuration.build())
     }
 
-    private fun navigateToBooksFragment() {
-        findNavController().navigate(HomeFragmentDirections.actionNavHomeToBooksFragment())
-    }
+    private fun navigateToBookDetailsFragment(it: Book) {
 
-    private fun navigateToPostDetailsFragment(post: Post) {
-        postDetailsVisitedCount++
-        findNavController().navigate(HomeFragmentDirections.actionNavHomeToPostDetailsFragment(post))
     }
 
     inner class ScrollListener : RecyclerView.OnScrollListener() {
@@ -179,7 +178,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val totalItemCount = layoutManager.itemCount
 
-            if (lastVisibleItemPosition == totalItemCount - 1) viewModel.getPosts()
+            if (lastVisibleItemPosition == totalItemCount - 1) viewModel.getBooks()
 
             dySum+=dy
             if(dySum>400) {

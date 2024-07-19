@@ -9,12 +9,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bannerAdView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/headerLayout"
@@ -74,12 +78,12 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="16dp"
+                    android:background="#80000000"
                     android:scaleType="centerCrop"
                     app:layout_constraintDimensionRatio="2:1"
                     app:layout_constraintEnd_toEndOf="@+id/headline"
                     app:layout_constraintStart_toStartOf="@+id/headline"
-                    app:layout_constraintTop_toBottomOf="@+id/headline"
-                    app:srcCompat="@color/material_dynamic_neutral95" />
+                    app:layout_constraintTop_toBottomOf="@+id/headline" />
 
                 <TextView
                     android:id="@+id/snippet"
@@ -131,5 +135,16 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bannerAdView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

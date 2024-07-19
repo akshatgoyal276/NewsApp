@@ -1,8 +1,9 @@
 package com.app.newsapp.di
 
 import com.app.newsapp.BuildConfig
-import com.app.newsapp.MainApplication
+import com.app.newsapp.main.MainApplication
 import com.app.newsapp.api.ApiService
+import com.app.newsapp.main.applicationContext
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
@@ -74,8 +75,8 @@ object ApiModule {
     @Singleton
     fun chuckerInterceptor(): ChuckerInterceptor {
         val chuckerCollector =
-            ChuckerCollector(context = MainApplication.context!!, showNotification = true)
-        return ChuckerInterceptor.Builder(MainApplication.context!!).collector(chuckerCollector)
+            ChuckerCollector(context = applicationContext, showNotification = true)
+        return ChuckerInterceptor.Builder(applicationContext).collector(chuckerCollector)
             .alwaysReadResponseBody(true).build()
     }
 

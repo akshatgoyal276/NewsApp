@@ -19,6 +19,13 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+        maven {
+            url = uri("https://maven.pkg.github.com/adster-tech/ads-sdk")
+            credentials {
+                username = "akshatgoyal276"
+                password = password
+            }
+        }
     }
 
     configurations.all {

@@ -1,15 +1,17 @@
-package com.app.newsapp
+package com.app.newsapp.main
 
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
 
+val applicationContext = MainApplication.context
+
 @HiltAndroidApp
 class MainApplication: Application() {
 
     companion object {
-        var instance: MainApplication? = null
-        val context: Context?
+        lateinit var instance: MainApplication
+        val context: Context
             get() = instance
     }
 

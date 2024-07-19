@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_booksFragment"
+            app:destination="@id/booksFragment" />
     </fragment>
     <fragment
         android:id="@+id/postDetailsFragment"
@@ -23,5 +26,9 @@
             android:name="postItem"
             app:argType="com.app.newsapp.data.dataModals.Post" />
     </fragment>
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.app.newsapp.ui.book.BooksFragment"
+        android:label="BooksFragment" />
 
 </navigation>
