@@ -7,7 +7,15 @@ plugins {
 }
 
 android {
-    namespace 'com.app.newsapp'
+    signingConfigs {
+        release {
+            storeFile file("../../Adster Keystore/keystore.jks")
+            storePassword 'adster123'
+            keyAlias 'key0'
+            keyPassword 'adster123'
+        }
+    }
+    namespace 'com.app.adtertimes'
     compileSdk 34
 
     dexOptions {
@@ -15,14 +23,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.app.newsapp"
+        applicationId "com.app.adstertimes"
         minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", 'API_KEY', '"5763846de30d489aa867f0711e2b031c"'
         buildConfigField "String", 'BASE_URL', '"https://api.nytimes.com/"'
@@ -38,6 +44,7 @@ android {
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -102,6 +109,6 @@ dependencies {
     implementation 'io.coil-kt:coil:2.4.0'
 
     //Adster ads
-    implementation ("com.adster:adstersdk:1.0.16")
+    implementation ("com.adster:orchestrationsdk:1.0.16")
 
 }

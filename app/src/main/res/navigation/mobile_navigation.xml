@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.app.newsapp.ui.home.HomeFragment"
+        android:name="com.app.adstertimes.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/postDetailsFragment"
-        android:name="com.app.newsapp.ui.postDetails.PostDetailsFragment"
+        android:name="com.app.adstertimes.ui.postDetails.PostDetailsFragment"
         android:label="fragment_post_details"
         tools:layout="@layout/fragment_post_details" >
         <argument
             android:name="postItem"
-            app:argType="com.app.newsapp.data.dataModals.Post" />
+            app:argType="com.app.adstertimes.data.dataModals.Post" />
     </fragment>
     <fragment
         android:id="@+id/booksFragment"
-        android:name="com.app.newsapp.ui.book.BooksFragment"
+        android:name="com.app.adstertimes.ui.book.BooksFragment"
         android:label="BooksFragment" />
 
 </navigation>

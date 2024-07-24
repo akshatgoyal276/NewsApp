@@ -8,3 +8,5 @@
 .cxx
 local.properties
 gradle-local.properties
+user-local.properties
+/app/release

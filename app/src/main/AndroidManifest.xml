@@ -14,7 +14,7 @@
 
 
     <application
-        android:name=".main.MainApplication"
+        android:name="com.app.adstertimes.main.MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -22,13 +22,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NewsApp"
+        android:theme="@style/Theme.AdsterTimes"
         tools:targetApi="31"
         android:enableOnBackInvokedCallback="true">
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.app.adstertimes.main.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.NewsApp">
+            android:theme="@style/Theme.AdsterTimes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +37,7 @@
         </activity>
 
         <activity
-            android:name=".ui.interstitialActivity.InterstitialActivity"
+            android:name="com.app.adstertimes.ui.interstitialActivity.InterstitialActivity"
             android:exported="true"/>
 
         <!-- Sample Ad Manager app ID: ca-app-pub-3940256099942544~3347511713 -->

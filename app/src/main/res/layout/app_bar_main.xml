@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.NewsApp.AppBarOverlay"
+        android:theme="@style/Theme.AdsterTimes.AppBarOverlay"
         android:visibility="gone">
 
         <androidx.appcompat.widget.Toolbar
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.NewsApp.PopupOverlay" />
+            app:popupTheme="@style/Theme.AdsterTimes.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

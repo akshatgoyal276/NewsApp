@@ -15,7 +15,7 @@ buildscript {
 def buildOutputDirectory = System.getenv("BUILD_OUTPUT_DIR") as String ?: "build"
 
 def prop = new Properties()
-file("gradle-local.properties").withInputStream { prop.load(it) }
+file("user-local.properties").withInputStream { prop.load(it) }
 
 allprojects {
     buildDir = buildOutputDirectory
@@ -25,8 +25,8 @@ allprojects {
         maven {
             url = uri("https://maven.pkg.github.com/adster-tech/ads-sdk")
             credentials {
-                username = "akshatgoyal276"
-                password = prop.get("githubkey")
+                username = prop.getProperty("github-username") as String
+                password = prop.getProperty("github-password") as String
             }
         }
     }

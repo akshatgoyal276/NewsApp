@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.NewsApp" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.AdsterTimes" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
@@ -10,7 +10,7 @@
         <item name="android:statusBarColor">@color/white</item>
     </style>
 
-    <style name="Theme.NewsApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AdsterTimes.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.NewsApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.AdsterTimes.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
